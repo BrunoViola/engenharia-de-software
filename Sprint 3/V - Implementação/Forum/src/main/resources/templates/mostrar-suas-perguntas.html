@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Pergunta</title>
+    <link rel="stylesheet" type="text/css" href="style.css" th:href="@{/style.css}">    <style>
+    body {
+        margin: 0;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 25%;
+        background-color: #f1f1f1;
+        position: fixed;
+        height: 100%;
+        overflow: auto;
+        text-align: center;
+        top: 0;
+    }
+
+    li a {
+        display: block;
+        color: #000;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    li a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    li a:hover:not(.active) {
+        background-color: #555;
+        color: white;
+    }
+
+
+    .menu-title {
+        background-color: #ddd;
+        padding: 8px 16px;
+        font-weight: bold;
+    }
+
+    .logout-button {
+        position: absolute;
+        bottom: 20px;
+        left: 5%;
+        width: 90%;
+        text-align: center;
+        justify-content: center
+    }
+
+    .logout-button button {
+        width: 100%;
+        padding: 12px 0;
+        background-color: #7369B0;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+
+    .logout-button button:hover {
+        background-color: #5f5592;
+    }
+
+    .nova-pergunta{
+        margin-top: 20px;
+        width: 120px;
+        height: 25px;
+        background-color: #D9D9D9;
+        border: 1px #000000 outset;
+        border-radius: 4px;
+        font-weight: normal;
+        cursor: pointer;
+    }
+    .nova-pergunta:hover{
+        background-color: #cecece;
+    }
+</style>
+</head>
+<body>
+<ul>
+    <li><h3 class="menu-title">Menu</h3></li>
+    <li><a href="/mostrar-perguntas">Início</a></li>
+    <li><a class="active" href="/mostrar-suas-perguntas">Suas perguntas</a></li>
+    <li><a>Ranking</a></li>
+    <li><a>Salvos</a></li>
+    <li><form th:action="@{/logout}" method="post" class="logout-button">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button type="submit">Sair</button>
+    </form></li>
+</ul>
+<div style="margin-left:25%;padding:1px 16px;">
+    <form th:action="@{/nova-pergunta}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="submit" value="Nova pergunta" class="nova-pergunta">
+    </form>
+</div>
+</body>
+</html>
