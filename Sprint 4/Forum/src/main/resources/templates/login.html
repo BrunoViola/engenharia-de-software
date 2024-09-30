@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body{
+            background-color: #ECECEC;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 5%;
+        }
+        .frame-centro {
+            padding: 15px 5%;
+            background-color: #656565;
+            margin: 0 auto;
+            width: 40%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .lab-pequeno {
+            color: #FFFFFF;
+            font-size: smaller;
+            margin-top: 20px;
+            display: block;
+            text-align: left;
+        }
+        .text-input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .login-btn {
+            width: 250px;
+            padding: 12px;
+            background-color: #7369B0;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bolder;
+            font-size: large;
+        }
+        .login-btn:hover {
+            background-color: #5f5592;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px auto;
+            width: 90%;
+            color: #fff;
+        }
+        .checkbox-container {
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            color: #fff;
+        }
+        a{
+            text-decoration: none;
+            color: #A091FC;
+        }
+        .nova-conta{
+            color: white;
+        }
+        input[type="checkbox"]{
+            accent-color: #5f5592;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fórum Comp</h1>
+    <div class="frame-centro">
+        <form th:action="@{/login-validation}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <label for="email"  class="lab-pequeno">Login</label>
+            <input class="text-input" type="email" name="email" id="email">
+
+            <label for="senha" class="lab-pequeno">Senha</label>
+            <input class="text-input" type="password" name="senha" id="senha">
+
+            <div class="checkbox-container">
+                <label><input type="checkbox" name="checkbox"> Lembrar-me?</label>
+            </div>
+
+            <input class="login-btn" type="submit" value="ENTRAR">
+        </form>
+        <p class="nova-conta">Ainda não tem uma conta? <a href="/nova-conta">Criar uma conta</a></p>
+    </div>
+    <div style="text-align: center">
+        <div th:if="${errorMsg}">
+            <p th:text="${errorMsg}"></p>
+        </div>
+        <div th:if="${logoutMsg}">
+            <p th:text="${logoutMsg}"></p>
+        </div>
+    </div>
+</body>
+</html>
